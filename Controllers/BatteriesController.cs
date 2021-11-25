@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RocketElevatorsRESTAPI.Models;
+using Microsoft.Data.SqlClient;
+
 
 namespace RocketElevatorsRESTAPI.Controllers
 {
@@ -24,17 +26,18 @@ namespace RocketElevatorsRESTAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Battery>>> GetBatteries()
         {
+            
             return await _context.batteries.ToListAsync();
         }
 
         // GET: api/Batteries/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Battery>> GetBattery(int id)
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<Battery>> GetBatteryID(int id)
         // public async Task<ActionResult<Battery>> GetBattery(string id)
         {
             // if (id == "operation")
             // {
-                
+                //
             // }
             var battery = await _context.batteries.FindAsync(id);
 
@@ -44,7 +47,88 @@ namespace RocketElevatorsRESTAPI.Controllers
             }
 
             return battery;
+            //             List<Battery> ls = new List<Battery>();
+            // ls.Add(await _context.batteries.FindAsync(id));
+            // Battery[] arr = new Battery[1];
+            // arr = ls.ToArray();
+            // // var battery = await _context.batteries.FindAsync(id);
+
+            // if (arr == null)
+            // {
+            //     return NotFound();
+            // }
+
+            // return arr[0];
+
         }
+
+        [HttpGet("{requestedInfo}")]
+        public async Task<ActionResult<IEnumerable<Battery>>> GetBatteriesInfos(string requestedInfo)
+        {
+            List<Battery> yes = await _context.batteries.ToListAsync();
+            List<Battery> filteredList = new List<Battery>();
+
+            if (requestedInfo == "ok")
+            {
+                filteredList = yes.Where(battery => battery.status == "yes").ToList();
+            }
+            else{
+                filteredList = yes.Where(battery => battery.status == "Active").ToList();
+            }
+            return filteredList;
+        }
+
+        // public async Task<ActionResult<Battery>> GetBatteryStatus(string status)
+        // {
+        //     // var ls = await _context.batteries.ToList();
+        //     // List<Battery> ls = new List<Battery>();
+        //     // ls.Add(await _context.batteries.ToListAsync());
+        //     //================================================
+        //     var battery = await _context.batteries.FindAsync(status);
+
+        //     if (battery == null)
+        //     {
+        //         return NotFound();
+        //     }
+
+        //     return battery;
+
+        //     // var battery = await _context.batteries.FindAsync(status);
+        //     // Console.WriteLine(battery);
+
+        //     // if (battery == null)
+        //     // {
+        //     //     return NotFound();
+        //     // }
+
+        //     // return battery;
+
+        //     // IEnumerable<Battery> GetAllBattery()
+        //     // {
+        //     //     return batteries;
+        //     // }
+        //     // foreach (var bat in GetAllBattery())
+        //     // {
+        //     //     Response.Write("");
+        //     // }
+        //     // if(status == "yes")
+        //     // {
+        //     //     var battery = await _context.batteries.FindAsync(1);
+        //     //     Console.WriteLine(battery.status);
+
+        //     //     if (battery == null)
+        //     //     {
+        //     //         return NotFound();
+        //     //     }
+
+        //     //     return battery;
+        //     // }
+        //     // else
+        //     // {
+        //     //     return NotFound();
+        //     // }
+
+        // }
 
         // PUT: api/Batteries/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -108,5 +192,9 @@ namespace RocketElevatorsRESTAPI.Controllers
         {
             return _context.batteries.Any(e => e.id == id);
         }
+        // public IEnumerable<Battery> GetAllBattery()
+        // {
+        //     return batteries;
+        // }
     }
 }
