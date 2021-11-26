@@ -40,45 +40,19 @@ namespace RocketElevatorsRESTAPI.Controllers
             return building;
         }
         [HttpGet("{status}")]
-        public async Task<ActionResult<IEnumerable<Building>>> GetLeadsInfos(string status)
+        public IEnumerable<Building> GetBuildingsIntervention(string status) 
         {
-            List<Building> buildingsList = new List<Building>();
-            List<int> listBuildingIDs = new List<int>();
-
-            List<Battery> batteriesList = (await _context.batteries.ToListAsync()).Where(battery => battery.status == status).ToList();
-            for (int b = 0; b < batteriesList.Count(); b++)
-            {
-                listBuildingIDs.Add(batteriesList[b].building_id);
-            }
-
-            List<Column> columnsList = (await _context.columns.ToListAsync()).Where(column => column.status == status).ToList();
-            for (int c = 0; c < columnsList.Count(); c++)
-            {
-                if (!listBuildingIDs.Contains((await _context.batteries.FindAsync(columnsList[c].battery_id)).building_id))
-                {
-                    listBuildingIDs.Add((await _context.batteries.FindAsync(columnsList[c].battery_id)).building_id);
-                }
-            }
-
-            List<Elevator> elevatorsList = (await _context.elevators.ToListAsync()).Where(elevator => elevator.status == status).ToList();
-            for (int e = 0; e < elevatorsList.Count(); e++)
-            {
-                if (!listBuildingIDs.Contains((await _context.batteries.FindAsync((await _context.columns.FindAsync(elevatorsList[e].column_id)).battery_id)).building_id))
-                {
-                    listBuildingIDs.Add((await _context.batteries.FindAsync((await _context.columns.FindAsync(elevatorsList[e].column_id)).battery_id)).building_id);
-                }
-            }
-            listBuildingIDs = listBuildingIDs.Distinct().ToList();
-            listBuildingIDs.Sort();
-            
-            for (int i = 0; i < listBuildingIDs.Count(); i++)
-            {
-                buildingsList.Add(await _context.buildings.FindAsync(listBuildingIDs[i]));
-                Console.WriteLine(buildingsList[i].id);
-            }
-
-
-            return buildingsList;
+            IQueryable<Building> Building = from building in _context.buildings
+                join battery in _context.batteries on building.id equals battery.building_id
+                join column in _context.columns on battery.id equals column.battery_id
+                join elevator in _context.elevators on column.id equals elevator.column_id
+                where battery.status == status || column.status == status || elevator.status == status
+                select building;
+            List<Building> buildingIntervention = new List<Building>();
+           
+            buildingIntervention = (Building.ToList()).Distinct().ToList();
+             
+            return buildingIntervention;
         }
 
         // PUT: api/Buildings/5
