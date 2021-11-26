@@ -47,7 +47,7 @@ namespace RocketElevatorsRESTAPI.Controllers
         public async Task<ActionResult<IEnumerable<Building>>> GetLeadsInfos(string status)
         {
             List<Building> buildingsList = new List<Building>();
-            List<int> listBuildingIDs = new List<int>();
+            List<int> listBuildingIDs = new List<int>();    
 
             List<Battery> batteriesList = (await _context.batteries.ToListAsync()).Where(battery => battery.status == status).ToList();
             for (int b = 0; b < batteriesList.Count(); b++)

@@ -41,6 +41,9 @@ namespace RocketElevatorsRESTAPI.Controllers
             return column;
         }
         
+
+        // GET: api/Columns/requestedInfo
+        // 
         [HttpGet("{requestedInfo}")]
         public async Task<ActionResult<IEnumerable<Column>>> GetBatteriesInfos(string requestedInfo)
         {

@@ -18,4 +18,6 @@ namespace RocketElevatorsRESTAPI.Models
         [JsonIgnore]
         public int building_id { get; set; }
     }
-}
+} 
+
+// dotnet aspnet-codegenerator controller -name QuotesController -async -api -m quote -dc TodoContext -outDir Controllers  

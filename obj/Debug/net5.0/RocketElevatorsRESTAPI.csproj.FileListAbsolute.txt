@@ -638,7 +638,6 @@ C:/Users/istar/Documents/ElevatorWeek8/Rocket-Elevators-REST-API/obj/Debug/net5.
 /Users/marcalexandreperussecavanagh/Desktop/Week8/RoketElevatorRestAPI/Rocket-Elevators-REST-API/obj/Debug/net5.0/staticwebassets/RocketElevatorsRESTAPI.StaticWebAssets.xml
 /Users/marcalexandreperussecavanagh/Desktop/Week8/RoketElevatorRestAPI/Rocket-Elevators-REST-API/obj/Debug/net5.0/scopedcss/bundle/RocketElevatorsRESTAPI.styles.css
 /Users/marcalexandreperussecavanagh/Desktop/Week8/RoketElevatorRestAPI/Rocket-Elevators-REST-API/obj/Debug/net5.0/RocketElevatorsRESTAPI.RazorTargetAssemblyInfo.cache
-/Users/marcalexandreperussecavanagh/Desktop/Week8/RoketElevatorRestAPI/Rocket-Elevators-REST-API/obj/Debug/net5.0/RocketElevatorsRESTAPI.csproj.CopyComplete
 /Users/marcalexandreperussecavanagh/Desktop/Week8/RoketElevatorRestAPI/Rocket-Elevators-REST-API/obj/Debug/net5.0/RocketElevatorsRESTAPI.dll
 /Users/marcalexandreperussecavanagh/Desktop/Week8/RoketElevatorRestAPI/Rocket-Elevators-REST-API/obj/Debug/net5.0/ref/RocketElevatorsRESTAPI.dll
 /Users/marcalexandreperussecavanagh/Desktop/Week8/RoketElevatorRestAPI/Rocket-Elevators-REST-API/obj/Debug/net5.0/RocketElevatorsRESTAPI.pdb

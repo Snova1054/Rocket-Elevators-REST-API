@@ -48,7 +48,6 @@ namespace RocketElevatorsRESTAPI.Controllers
         }
 
         // GET: api/Batteries/requestedInfo
-        //
         [HttpGet("{requestedInfo}")]
         public async Task<ActionResult<IEnumerable<Battery>>> GetBatteriesInfos(string requestedInfo)
         {
