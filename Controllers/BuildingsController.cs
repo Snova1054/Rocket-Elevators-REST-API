@@ -40,19 +40,19 @@ namespace RocketElevatorsRESTAPI.Controllers
 
             return building;
         }
-        [HttpGet("{buildingintervention}")]
-        public async Task<ActionResult<IEnumerable<Building>>> GetLeadsInfos(string buildingintervention)
+        [HttpGet("{status}")]
+        public async Task<ActionResult<IEnumerable<Building>>> GetLeadsInfos(string status)
         {
             List<Building> buildingsList = new List<Building>();
             List<int> listBuildingIDs = new List<int>();
 
-            List<Battery> batteriesList = (await _context.batteries.ToListAsync()).Where(battery => battery.status == "intervention").ToList();
+            List<Battery> batteriesList = (await _context.batteries.ToListAsync()).Where(battery => battery.status == status).ToList();
             for (int b = 0; b < batteriesList.Count(); b++)
             {
                 listBuildingIDs.Add(batteriesList[b].building_id);
             }
 
-            List<Column> columnsList = (await _context.columns.ToListAsync()).Where(column => column.status == "intervention").ToList();
+            List<Column> columnsList = (await _context.columns.ToListAsync()).Where(column => column.status == status).ToList();
             for (int c = 0; c < columnsList.Count(); c++)
             {
                 if (!listBuildingIDs.Contains((await _context.batteries.FindAsync(columnsList[c].battery_id)).building_id))
@@ -61,7 +61,7 @@ namespace RocketElevatorsRESTAPI.Controllers
                 }
             }
 
-            List<Elevator> elevatorsList = (await _context.elevators.ToListAsync()).Where(elevator => elevator.status == "intervention").ToList();
+            List<Elevator> elevatorsList = (await _context.elevators.ToListAsync()).Where(elevator => elevator.status == status).ToList();
             for (int e = 0; e < elevatorsList.Count(); e++)
             {
                 if (!listBuildingIDs.Contains((await _context.batteries.FindAsync((await _context.columns.FindAsync(elevatorsList[e].column_id)).battery_id)).building_id))
@@ -69,7 +69,7 @@ namespace RocketElevatorsRESTAPI.Controllers
                     listBuildingIDs.Add((await _context.batteries.FindAsync((await _context.columns.FindAsync(elevatorsList[e].column_id)).battery_id)).building_id);
                 }
             }
-
+            listBuildingIDs = listBuildingIDs.Distinct().ToList();
             listBuildingIDs.Sort();
             
             for (int i = 0; i < listBuildingIDs.Count(); i++)

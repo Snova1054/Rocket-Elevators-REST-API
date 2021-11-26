@@ -40,8 +40,8 @@ namespace RocketElevatorsRESTAPI.Controllers
 
             return lead;
         }
-        [HttpGet("{requestedInfo}")]
-        public async Task<ActionResult<IEnumerable<Lead>>> GetLeadsInfos(string requestedInfo)
+        [HttpGet("/requestedInfo")]
+        public async Task<ActionResult<IEnumerable<Lead>>> GetLeadsInfos()
         {
             DateTime monthAgo = DateTime.Now.AddDays(-30);
             List<Lead> leadsList = await _context.leads.ToListAsync();
@@ -49,25 +49,25 @@ namespace RocketElevatorsRESTAPI.Controllers
             List<Customer> customersList = await _context.customers.ToListAsync();
             List<Lead> leadsMadeCustomersList = new List<Lead>();
             
-            if (requestedInfo == "LeadCustomer")
+            for (int i = 0; i < filteredLeadsList.Count;)
             {
-                for (int i = 0; i < filteredLeadsList.Count; i++)
+                for (int j = 0; j < customersList.Count; j++)
                 {
-                    for (int j = 0; j < customersList.Count; j++)
+                    if (filteredLeadsList[i].email == customersList[j].email_of_the_company_contact)
                     {
-                        if (filteredLeadsList[i].email == customersList[j].email_of_the_company_contact)
-                        {
-                            leadsMadeCustomersList.Add(filteredLeadsList[i]);
-                        }
+                        i++; j = -1;
                     }
                 }
+                leadsMadeCustomersList.Add(filteredLeadsList[i]); i++;
+            }
+            if (leadsMadeCustomersList == null)
+            {
+                return NotFound();                
             }
             else
             {
-                return NotFound();
+                return leadsMadeCustomersList;
             }
-
-            return leadsMadeCustomersList;
         }
 
 

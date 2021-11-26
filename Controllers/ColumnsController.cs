@@ -40,6 +40,24 @@ namespace RocketElevatorsRESTAPI.Controllers
 
             return column;
         }
+        
+        [HttpGet("{requestedInfo}")]
+        public async Task<ActionResult<IEnumerable<Column>>> GetBatteriesInfos(string requestedInfo)
+        {
+            List<Column> columnsList = await _context.columns.ToListAsync();
+            List<Column> filteredList = new List<Column>();
+            filteredList = columnsList.Where(column => column.status == requestedInfo).ToList();
+
+            if (filteredList == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return filteredList;
+            }
+        }
+
 
         // PUT: api/Columns/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754

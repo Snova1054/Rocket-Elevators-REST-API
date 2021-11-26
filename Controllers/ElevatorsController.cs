@@ -28,7 +28,7 @@ namespace RocketElevatorsRESTAPI.Controllers
         }
 
         // GET: api/Elevators/5
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<Elevator>> GetElevator(int id)
         {
             var elevator = await _context.elevators.FindAsync(id);
@@ -39,6 +39,23 @@ namespace RocketElevatorsRESTAPI.Controllers
             }
 
             return elevator;
+        }
+
+        [HttpGet("{statusinfo}")]
+        public async Task<ActionResult<IEnumerable<Elevator>>> GetInterventionElevator (string statusinfo)
+        {
+            List<Elevator> elevatorsList = await _context.elevators.ToListAsync();
+            List<Elevator> filteredList = new List<Elevator>(); 
+            filteredList = elevatorsList.Where(elevator => elevator.status == statusinfo).ToList();
+            
+            if (filteredList == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return filteredList; 
+            }
         }
 
         // PUT: api/Elevators/5

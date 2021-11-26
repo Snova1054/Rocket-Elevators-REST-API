@@ -65,17 +65,18 @@ namespace RocketElevatorsRESTAPI.Controllers
         [HttpGet("{requestedInfo}")]
         public async Task<ActionResult<IEnumerable<Battery>>> GetBatteriesInfos(string requestedInfo)
         {
-            List<Battery> yes = await _context.batteries.ToListAsync();
+            List<Battery> batteriesList = await _context.batteries.ToListAsync();
             List<Battery> filteredList = new List<Battery>();
+            filteredList = batteriesList.Where(battery => battery.status == requestedInfo).ToList();
 
-            if (requestedInfo == "ok")
+            if (filteredList == null)
             {
-                filteredList = yes.Where(battery => battery.status == "yes").ToList();
+                return NotFound();
             }
-            else{
-                filteredList = yes.Where(battery => battery.status == "Active").ToList();
+            else
+            {
+                return filteredList;
             }
-            return filteredList;
         }
 
         // public async Task<ActionResult<Battery>> GetBatteryStatus(string status)

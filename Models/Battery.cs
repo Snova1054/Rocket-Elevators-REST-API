@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json.Serialization;
 
 namespace RocketElevatorsRESTAPI.Models
 {
@@ -14,6 +15,7 @@ namespace RocketElevatorsRESTAPI.Models
         public string notes { get; set; }
         public DateTime created_at { get; set; }
         public DateTime updated_at { get; set; }
+        [JsonIgnore]
         public int building_id { get; set; }
     }
 }

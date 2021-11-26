@@ -13,8 +13,6 @@ namespace RocketElevatorsRESTAPI.Models
         public string project_description { get; set; }
         public string departement_in_charge_of_the_elevators { get; set; }
         public string message { get; set; }
-        public string filename { get; set; }
-        public string content_type { get; set; }
         public DateTime created_at { get; set; }
         public DateTime updated_at { get; set; }
     }
