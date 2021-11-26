@@ -470,8 +470,13 @@ C:\Users\istar\Documents\ElevatorWeek8\Rocket-Elevators-REST-API\obj\Debug\net5.
 C:\Users\istar\Documents\ElevatorWeek8\Rocket-Elevators-REST-API\obj\Debug\net5.0\staticwebassets\RocketElevatorsRESTAPI.StaticWebAssets.xml
 C:\Users\istar\Documents\ElevatorWeek8\Rocket-Elevators-REST-API\obj\Debug\net5.0\scopedcss\bundle\RocketElevatorsRESTAPI.styles.css
 C:\Users\istar\Documents\ElevatorWeek8\Rocket-Elevators-REST-API\obj\Debug\net5.0\RocketElevatorsRESTAPI.RazorTargetAssemblyInfo.cache
-C:\Users\istar\Documents\ElevatorWeek8\Rocket-Elevators-REST-API\obj\Debug\net5.0\RocketElevatorsRESTAPI.csproj.CopyComplete
 C:\Users\istar\Documents\ElevatorWeek8\Rocket-Elevators-REST-API\obj\Debug\net5.0\RocketElevatorsRESTAPI.dll
 C:\Users\istar\Documents\ElevatorWeek8\Rocket-Elevators-REST-API\obj\Debug\net5.0\ref\RocketElevatorsRESTAPI.dll
 C:\Users\istar\Documents\ElevatorWeek8\Rocket-Elevators-REST-API\obj\Debug\net5.0\RocketElevatorsRESTAPI.pdb
 C:\Users\istar\Documents\ElevatorWeek8\Rocket-Elevators-REST-API\obj\Debug\net5.0\RocketElevatorsRESTAPI.genruntimeconfig.cache
+C:\Users\istar\Documents\ElevatorWeek8\Rocket-Elevators-REST-API\bin\Debug\net5.0\publish\appsettings.Development.json
+C:\Users\istar\Documents\ElevatorWeek8\Rocket-Elevators-REST-API\bin\Debug\net5.0\publish\appsettings.json
+C:\Users\istar\Documents\ElevatorWeek8\Rocket-Elevators-REST-API\bin\Debug\net5.0\publish\web.config
+C:\Users\istar\Documents\ElevatorWeek8\Rocket-Elevators-REST-API\bin\Debug\net5.0\publish\RocketElevatorsRESTAPI.deps.json
+C:\Users\istar\Documents\ElevatorWeek8\Rocket-Elevators-REST-API\bin\Debug\net5.0\publish\RocketElevatorsRESTAPI.runtimeconfig.json
+C:\Users\istar\Documents\ElevatorWeek8\Rocket-Elevators-REST-API\obj\Debug\net5.0\RocketElevatorsRESTAPI.csproj.CopyComplete
