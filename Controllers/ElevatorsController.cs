@@ -41,6 +41,9 @@ namespace RocketElevatorsRESTAPI.Controllers
             return elevator;
         }
 
+
+        // GET: api/Elevators/statusinfo
+        //Retrieving a list of Elevators that are not in operation at the time of the request.
         [HttpGet("{statusinfo}")]
         public async Task<ActionResult<IEnumerable<Elevator>>> GetInterventionElevator (string statusinfo)
         {

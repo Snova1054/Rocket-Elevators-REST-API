@@ -40,6 +40,9 @@ namespace RocketElevatorsRESTAPI.Controllers
 
             return building;
         }
+
+        //GET: api/Buldings/status
+        // Retrieving a list of Buildings that contain at least one battery, column or elevator requiring intervention.
         [HttpGet("{status}")]
         public async Task<ActionResult<IEnumerable<Building>>> GetLeadsInfos(string status)
         {

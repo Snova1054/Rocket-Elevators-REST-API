@@ -9,6 +9,7 @@ namespace RocketElevatorsRESTAPI.Models
         {
         }
 
+        // Add a new Dbset<> before create a new controllers.
         public DbSet<Building> buildings { get; set; }
         public DbSet<Battery> batteries { get; set; }
         public DbSet<Elevator> elevators { get; set; }

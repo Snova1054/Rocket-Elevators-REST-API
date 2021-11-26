@@ -40,6 +40,9 @@ namespace RocketElevatorsRESTAPI.Controllers
 
             return lead;
         }
+
+        // GET: api/Leads/requestedInfo
+        // Retrieving a list of Leads created in the last 30 days who have not yet become customers.
         [HttpGet("/requestedInfo")]
         public async Task<ActionResult<IEnumerable<Lead>>> GetLeadsInfos()
         {

@@ -30,7 +30,7 @@ namespace RocketElevatorsRESTAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
-
+            
             services.AddDbContext<TodoContext>(options =>
                 options.UseMySql(Configuration.GetConnectionString("DefaultConnection"), new MySqlServerVersion(new Version())));
             services.AddMvc();

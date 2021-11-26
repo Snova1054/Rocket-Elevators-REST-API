@@ -7701,34 +7701,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\istar\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
+    "/Users/marcalexandreperussecavanagh/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\istar\\Documents\\ElevatorWeek8\\Rocket-Elevators-REST-API\\RocketElevatorsRESTAPI.csproj",
+      "projectUniqueName": "/Users/marcalexandreperussecavanagh/Desktop/Week8/RoketElevatorRestAPI/Rocket-Elevators-REST-API/RocketElevatorsRESTAPI.csproj",
       "projectName": "RocketElevatorsRESTAPI",
-      "projectPath": "C:\\Users\\istar\\Documents\\ElevatorWeek8\\Rocket-Elevators-REST-API\\RocketElevatorsRESTAPI.csproj",
-      "packagesPath": "C:\\Users\\istar\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\istar\\Documents\\ElevatorWeek8\\Rocket-Elevators-REST-API\\obj\\",
+      "projectPath": "/Users/marcalexandreperussecavanagh/Desktop/Week8/RoketElevatorRestAPI/Rocket-Elevators-REST-API/RocketElevatorsRESTAPI.csproj",
+      "packagesPath": "/Users/marcalexandreperussecavanagh/.nuget/packages/",
+      "outputPath": "/Users/marcalexandreperussecavanagh/Desktop/Week8/RoketElevatorRestAPI/Rocket-Elevators-REST-API/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-      ],
       "configFilePaths": [
-        "C:\\Users\\istar\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "/Users/marcalexandreperussecavanagh/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -7796,7 +7786,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.402/RuntimeIdentifierGraph.json"
       }
     }
   }
