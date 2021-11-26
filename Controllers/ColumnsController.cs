@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RocketElevatorsRESTAPI.Models;
@@ -28,7 +26,7 @@ namespace RocketElevatorsRESTAPI.Controllers
         }
 
         // GET: api/Columns/5
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<Column>> GetColumn(int id)
         {
             var column = await _context.columns.FindAsync(id);
@@ -40,7 +38,7 @@ namespace RocketElevatorsRESTAPI.Controllers
 
             return column;
         }
-        
+
         [HttpGet("{requestedInfo}")]
         public async Task<ActionResult<IEnumerable<Column>>> GetBatteriesInfos(string requestedInfo)
         {
@@ -58,7 +56,6 @@ namespace RocketElevatorsRESTAPI.Controllers
             }
         }
 
-
         // PUT: api/Columns/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
@@ -70,6 +67,32 @@ namespace RocketElevatorsRESTAPI.Controllers
             }
 
             _context.Entry(column).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ColumnExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+        
+        [HttpPut("{id}/{status}")]
+        public async Task<IActionResult> PutColumnStatus(int id, Column column, string status)
+        {
+            var columnFound = await _context.columns.FindAsync(id);
+
+            columnFound.status = status;
 
             try
             {

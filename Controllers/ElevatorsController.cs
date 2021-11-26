@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RocketElevatorsRESTAPI.Models;
@@ -41,12 +39,12 @@ namespace RocketElevatorsRESTAPI.Controllers
             return elevator;
         }
 
-        [HttpGet("{statusinfo}")]
-        public async Task<ActionResult<IEnumerable<Elevator>>> GetInterventionElevator (string statusinfo)
+        [HttpGet("notoperational")]
+        public async Task<ActionResult<IEnumerable<Elevator>>> GetInterventionElevator ()
         {
             List<Elevator> elevatorsList = await _context.elevators.ToListAsync();
             List<Elevator> filteredList = new List<Elevator>(); 
-            filteredList = elevatorsList.Where(elevator => elevator.status == statusinfo).ToList();
+            filteredList = elevatorsList.Where(elevator => elevator.status == "intervention" || elevator.status == "offline").ToList();
             
             if (filteredList == null)
             {
@@ -69,6 +67,32 @@ namespace RocketElevatorsRESTAPI.Controllers
             }
 
             _context.Entry(elevator).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ElevatorExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        [HttpPut("{id}/{status}")]
+        public async Task<IActionResult> PutElevatorStatus(int id, Elevator elevator, string status)
+        {
+            var elevatorFound = await _context.elevators.FindAsync(id);
+
+            elevatorFound.status = status;
 
             try
             {
