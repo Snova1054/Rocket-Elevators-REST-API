@@ -39,8 +39,8 @@ namespace RocketElevatorsRESTAPI.Controllers
 
             return lead;
         }
-        [HttpGet("/requestedInfo")]
-        public async Task<ActionResult<IEnumerable<Lead>>> GetLeadsInfos()
+        [HttpGet("requestedInfo")]
+        public async Task<ActionResult<IEnumerable<Lead>>> GetLeadsInfos(string requestedInfo)
         {
             DateTime monthAgo = DateTime.Now.AddDays(-30);
             List<Lead> leadsList = await _context.leads.ToListAsync();

@@ -170,6 +170,45 @@
         }
       }
     },
+    "/api/batteries/{id}/{status}": {
+      "put": {
+        "tags": [
+          "Batteries"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "path",
+            "name": "status",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Battery"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/buildings": {
       "get": {
         "tags": [
@@ -304,7 +343,7 @@
         }
       }
     },
-    "/api/buildings/{buildingintervention}": {
+    "/api/buildings/{status}": {
       "get": {
         "tags": [
           "Buildings"
@@ -317,7 +356,7 @@
         "parameters": [
           {
             "in": "path",
-            "name": "buildingintervention",
+            "name": "status",
             "required": true,
             "type": "string"
           }
@@ -469,6 +508,76 @@
         }
       }
     },
+    "/api/columns/{requestedInfo}": {
+      "get": {
+        "tags": [
+          "Columns"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "requestedInfo",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Column"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/columns/{id}/{status}": {
+      "put": {
+        "tags": [
+          "Columns"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "path",
+            "name": "status",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Column"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/elevators": {
       "get": {
         "tags": [
@@ -594,6 +703,68 @@
             "required": true,
             "type": "integer",
             "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/elevators/notoperational": {
+      "get": {
+        "tags": [
+          "Elevators"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Elevator"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/elevators/{id}/{status}": {
+      "put": {
+        "tags": [
+          "Elevators"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "path",
+            "name": "status",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Elevator"
+            }
           }
         ],
         "responses": {
@@ -737,7 +908,7 @@
         }
       }
     },
-    "/api/leads/{requestedInfo}": {
+    "/api/leads/requestedInfo": {
       "get": {
         "tags": [
           "Leads"
@@ -749,9 +920,8 @@
         ],
         "parameters": [
           {
-            "in": "path",
+            "in": "query",
             "name": "requestedInfo",
-            "required": true,
             "type": "string"
           }
         ],
@@ -807,10 +977,6 @@
         "updated_at": {
           "format": "date-time",
           "type": "string"
-        },
-        "building_id": {
-          "format": "int32",
-          "type": "integer"
         }
       }
     },
@@ -974,12 +1140,6 @@
           "type": "string"
         },
         "message": {
-          "type": "string"
-        },
-        "filename": {
-          "type": "string"
-        },
-        "content_type": {
           "type": "string"
         },
         "created_at": {
